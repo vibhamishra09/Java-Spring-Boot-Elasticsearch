@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.4  # Use a supported version of 8.x
+    container_name: es-single-node
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false    # Disable security
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g      # Optional: set Java heap size
+    ports:
+      - "9200:9200"  # Expose Elasticsearch on localhost:9200
+    volumes:
+      - esdata:/usr/share/elasticsearch/data  # Persist data across restarts
+    networks:
+      - es_network
+
+volumes:
+  esdata:
+    driver: local
+
+networks:
+  es_network:
+    driver: bridge
