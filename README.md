@@ -42,7 +42,7 @@ You should see a JSON response with details about the Elasticsearch instance.
 
 Clone the repository and navigate to the project directory if you haven't already:
 
-git clone https://github.com/your-username/demo-project.git
+git clone [https://github.com/your-username/demo-project.git](https://github.com/vibhamishra09/Java-Spring-Boot-Elasticsearch.git)
 cd demo
 
 
@@ -101,7 +101,14 @@ These will be indexed into Elasticsearch for search operations.
 Search Products
 
 You can search for products using the GET /api/search endpoint with various filters.
+Index Searching in Elasticsearch
 
+To search the indexed data in Elasticsearch, use the following curl command:
+
+curl -X GET "http://localhost:9200/product_index/_search?pretty=true&q=*&size=10"
+
+
+This will return the top 10 documents from the product_index. You can adjust the query or size parameter as needed for specific search results.
 Example: Search for courses in the 'Math' category
 
 curl -X GET "http://localhost:8080/api/search?q=category:Math"
